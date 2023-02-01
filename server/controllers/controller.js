@@ -9,7 +9,6 @@ const controller = {
       );
 
       const projectsArr = formatData(allTimesheets.rows);
-      console.log(projectsArr);
       res.locals.result = projectsArr;
       return next();
     } catch (err) {

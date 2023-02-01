@@ -132,9 +132,14 @@ th {
 }
 
 .modal-form {
-  height: 600px;
+  height: 500px;
   width: 700px;
-  background-color: white;
+  background-color: rgb(241, 202, 202);
+  border-radius: 10%;
+}
+
+#cancel-modal-btn {
+  background-color: rgb(107, 107, 69);
 }
 
 #general-group {
@@ -142,11 +147,15 @@ th {
   justify-content: space-evenly;
   padding: 10px;
   align-items: center;
-  height: 100px;
+  margin-top: 20px;
 }
 
 #general-group > * {
   width: 40%;
+}
+
+#general-group input {
+  margin-bottom: 10px;
 }
 
 #general-group label {
@@ -169,6 +178,7 @@ th {
   flex-direction: column;
   justify-content: space-evenly;
   height: 80%;
+  margin: 20px;
 }
 
 .client-field {
@@ -182,9 +192,14 @@ th {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin: 0 40px;
 }
 .client-hours > * {
   margin: 10px;
+}
+
+.client-hours label {
+  padding-right: 10px;
 }
 
 .form-field label {

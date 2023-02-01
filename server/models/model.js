@@ -1,12 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-/* 
-script to run in terminal to upload csv file
-Example from my local machine
-\COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '/Users/JasonChan1/Documents/Coding/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER;
-*/
-
 // MUST FIRST CREATE a database in psql using CREATE DATABASE <Name>;
 const pool = new Pool({
   user: process.env.DB_USER || '',

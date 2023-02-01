@@ -3,7 +3,6 @@ const formatData = (timesheets) => {
 
   for (const timesheet of timesheets) {
     let { client, project, hours, billable, billable_rate } = timesheet;
-
     hours = parseFloat(hours);
 
     if (!(project in allProjects)) allProjects[project] = {};
@@ -16,8 +15,8 @@ const formatData = (timesheets) => {
       billable_rate
     );
   }
-  const projectsArr = [];
 
+  const projectsArr = [];
   for (const [k, v] of Object.entries(allProjects)) {
     const projectSummary = {
       [k]: v,
@@ -25,7 +24,6 @@ const formatData = (timesheets) => {
 
     projectsArr.push(projectSummary);
   }
-
   return projectsArr;
 };
 

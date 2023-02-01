@@ -19,21 +19,17 @@ const App = () => {
 
   useEffect(() => {
     const formatProjects = () => {
-      const clientsArr = [];
+      const formattedProjectData = [];
+
       for (const timesheet of timesheets) {
-        const singleClient = [];
-
         for (const project in timesheet) {
-          singleClient.push(project);
-
           for (const client in timesheet[project]) {
-            singleClient.push(client);
-            singleClient.push(timesheet[project][client]);
+            const projectDetails = timesheet[project][client];
+            formattedProjectData.push([project, client, projectDetails]);
           }
         }
-        clientsArr.push(singleClient);
       }
-      setProjects(clientsArr);
+      setProjects(formattedProjectData);
     };
 
     formatProjects();

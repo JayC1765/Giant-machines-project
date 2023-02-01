@@ -18,6 +18,7 @@ const Form = ({ setIsOpen }) => {
   const [projects, setProjects] = useState([]);
   const [clients, setClients] = useState([]);
   const [projectCode, setProjectCode] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -42,33 +43,34 @@ const Form = ({ setIsOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      fetch('/timesheets/addTimesheet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          date: values.date,
-          client: values.client,
-          project: values.project,
-          project_code: values.project_code,
-          hours: values.hours,
-          billable: values.billable,
-          first_name: values.first_name,
-          last_name: values.last_name,
-          billable_rate: values.billable_rate,
-        }),
+    fetch('/timesheets/addTimesheet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: values.date,
+        client: values.client,
+        project: values.project,
+        project_code: values.project_code,
+        hours: values.hours,
+        billable: values.billable,
+        first_name: values.first_name,
+        last_name: values.last_name,
+        billable_rate: values.billable_rate,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res is ', res);
+        if (res === 'success') {
+          window.location = '/';
+        } else {
+          throw Error(res);
+        }
       })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res === 'success') {
-            window.location = '/';
-          } else {
-            setIsError(true);
-          }
-        });
-    } catch (err) {
-      console.log(`Error while adding timesheet ${err}`);
-    }
+      .catch((err) => {
+        setIsError(true);
+        setErrorMessage(err.message);
+      });
   };
 
   if (isError === true) {
@@ -201,12 +203,24 @@ const Form = ({ setIsOpen }) => {
               <option>No</option>
             </select>
           </div>
+          {isError && (
+            <div
+              className='form-error-message'
+              style={{ color: 'red', marginLeft: '30px' }}
+            >
+              {errorMessage}
+            </div>
+          )}
         </div>
         <div className='modal-btn-container'>
           <button className='form-submit' type='submit'>
             Submit
           </button>
-          <button className='form-submit' onClick={() => setIsOpen(false)}>
+          <button
+            className='form-submit'
+            id='cancel-modal-btn'
+            onClick={() => setIsOpen(false)}
+          >
             Cancel
           </button>
         </div>
