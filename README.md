@@ -26,7 +26,7 @@ Make sure you have a recent version of [Node](https://nodejs.org/en/) v16.14 or 
 
 6. To upload the data in csv format into our newly created database, you can run the following script below inside the PSQL terminal:
 
-\COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '<pathToServerFolder>/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER;
+\COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '`<pathToServerFolder>`/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER;
 
 Example: \COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '/Users/JasonChan/Projects/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER;
 
