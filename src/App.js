@@ -21,14 +21,15 @@ const App = () => {
     const formatProjects = () => {
       const formattedProjectData = [];
 
-      for (const timesheet of timesheets) {
-        for (const project in timesheet) {
-          for (const client in timesheet[project]) {
-            const projectDetails = timesheet[project][client];
+      timesheets.forEach((t) => {
+        for (const project in t) {
+          for (const client in t[project]) {
+            const projectDetails = t[project][client];
             formattedProjectData.push([project, client, projectDetails]);
           }
         }
-      }
+      });
+
       setProjects(formattedProjectData);
     };
 
