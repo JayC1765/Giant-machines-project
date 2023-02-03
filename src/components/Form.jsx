@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { generateDate } from '../helpers';
 
 const Form = ({ setIsOpen }) => {
-  const today = generateDate();
   const [values, setValues] = useState({
-    date: today,
+    date: generateDate(),
     client: '',
     project: '',
     project_code: '',
@@ -72,10 +71,6 @@ const Form = ({ setIsOpen }) => {
         setErrorMessage(err.message);
       });
   };
-
-  if (isError === true) {
-    <h2>An Error has occured while adding timesheet</h2>;
-  }
 
   return (
     <form className='modal-form' onSubmit={handleSubmit}>

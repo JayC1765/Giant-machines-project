@@ -89,7 +89,9 @@ const controller = {
       if (err) {
         return next({
           log: `Error getting client information, ${err}`,
-          message: 'There is an error while retrieving client information',
+          message: {
+            err: 'There is an error while retrieving client information',
+          },
         });
       }
     }
