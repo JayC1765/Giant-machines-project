@@ -1,7 +1,6 @@
 const formatData = (timesheets) => {
   const allProjects = {};
 
-  // for (const timesheet of timesheets) {
   timesheets.forEach((t) => {
     const { client, project, hours, billable, billable_rate } = t;
     const parsedHours = parseFloat(hours);
@@ -16,7 +15,6 @@ const formatData = (timesheets) => {
       billable_rate
     );
   });
-  // }
 
   const projectsArr = [];
   for (const [k, v] of Object.entries(allProjects)) {
