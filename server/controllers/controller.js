@@ -20,7 +20,6 @@ const controller = {
       }
     }
   },
-
   addTimesheet: async (req, res, next) => {
     try {
       const {
@@ -34,7 +33,6 @@ const controller = {
         last_name,
         billable_rate,
       } = req.body;
-
       await db.query(
         `INSERT INTO timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
         [
@@ -49,7 +47,6 @@ const controller = {
           billable_rate,
         ]
       );
-
       return next();
     } catch (err) {
       if (err) {
@@ -60,21 +57,17 @@ const controller = {
       }
     }
   },
-
   getClientInfo: async (req, res, next) => {
     try {
       const getProjects = await db.query(
         `SELECT project FROM timesheets GROUP BY project;`
       );
-
       const getProjectCodes = await db.query(
         `SELECT project_code FROM timesheets GROUP BY project_code;`
       );
-
       const getClients = await db.query(
         `SELECT client FROM timesheets GROUP BY client;`
       );
-
       const allProjects = getProjects.rows.map((p) => p.project);
       const allProjectCodes = getProjectCodes.rows.map((p) => p.project_code);
       const allClients = getClients.rows.map((c) => c.client);
@@ -83,7 +76,6 @@ const controller = {
         allProjectCodes,
         allClients,
       };
-
       return next();
     } catch (err) {
       if (err) {
