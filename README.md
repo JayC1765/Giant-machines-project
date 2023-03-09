@@ -22,14 +22,9 @@ Make sure you have a recent version of [Node](https://nodejs.org/en/) v16.14 or 
 2. Update the .env file variables (optional for some variables) but the database user (usually defaults to 'postgres') and password might be required
 3. Install dependencies for the frontend by running `npm install` at the root directory
 4. Install dependencies in server directory by running `cd server` and `npm install`
-5. Run `npm start` inside the server directory (please **ensure** step 1 is completed first)
+5. Run `npm run upload` to start up a Sequelize instance which will create a table for any models in the models folder. At the same time, it will also upload the CSV file automatically in the existing table.
+6. Run `npm start` inside the server directory (please **ensure** step 1 is completed first)
 
 - Server currently runs on http://localhost:8080. If changed to a different port, please update the "proxy" value inside the `package.json` at the root directory
-
-6. To upload the data in csv format into our newly created database, you can run the following script below inside the PSQL terminal:
-
-`` \COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '<pathToServerFolder>/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER; ``
-
-Example: \COPY timesheets (date, client, project, project_code, hours, billable, first_name, last_name, billable_rate) FROM '/Users/JasonChan1/Documents/Coding/Giant-machines-project/server/GM_sample_data.csv' DELIMITER ',' CSV HEADER;
 
 7. Run `npm start` at the root. Enjoy!
