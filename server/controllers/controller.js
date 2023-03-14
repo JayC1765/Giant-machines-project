@@ -1,4 +1,5 @@
-const Timesheet = require('../models/timesheet');
+const db = require('../models');
+const Timesheet = db.timesheets;
 const { formatData } = require('../helper/helper');
 
 const controller = {

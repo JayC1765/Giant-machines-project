@@ -1,5 +1,5 @@
-const Timesheet = require('../models/timesheet');
-const sequelize = require('./database');
+const db = require('../models');
+const Timesheet = db.timesheets;
 const fs = require('fs');
 const path = require('path');
 const fastcsv = require('fast-csv');
@@ -52,10 +52,9 @@ const uploadData = () => {
   stream.pipe(csvStream);
 };
 
-const initDB = async () => {
-  await sequelize.sync();
+const uploadCSV = async () => {
   await uploadData();
   console.log('CSV files have been uploaded');
 };
 
-initDB();
+uploadCSV();

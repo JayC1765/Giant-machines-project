@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const PORT = 8080;
-const sequelize = require('./util/database');
 const router = require('./routes/router');
 
 app.use(express.json());
@@ -29,10 +28,4 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
-  sequelize
-    .authenticate()
-    .then((res) => console.log('Connected to Database'))
-    .catch((err) =>
-      console.log(`Error while connecting to the database ${err}`)
-    );
 });
